@@ -1,0 +1,58 @@
+<!-- Enunciado do Exercício:
+
+A ModalGR participará de uma feira de tecnologia e cerca de 150 de seus colaboradores comparecerão. Portanto, 
+como exigência dos organizadores é necessário que todos estejam devidamente identificados, através de um 
+crachá contendo o logo da ModalGR e o respectivo nome do colaborador em maiúsculo, o qual deverá respeitar 
+o seguinte padrão como segue no exemplo abaixo: 
+
+
+Nome completo colaborador: Antônio Carlos Pereira da Silva dos Santos e 
+Machado 
+
+Nome que deverá ser impresso no crachá: MACHADO, A. C. P. S. S. 
+
+
+Visando atender essa exigência, você foi escolhido para nos ajudar nessa solução! 
+A ideia é ter um campo para inserção do nome completo do colaborador, e em seguida, exibi-lo no padrão exigido. -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Desafio 1 - Nomes de Crachá | ModalGR</title>
+  </head>
+
+  <body>
+    <button onclick="getName()">Clique aqui para inserir nome completo</button>
+
+    <script>
+      const conectors = ["de", "da", "do", "dos", "das"];
+
+      function transforName(completeName) {
+        let namePart = completeName.split(" ");
+
+        namePart = namePart.filter(
+          (namePart) => !conectors.includes(namePart.toLowerCase())
+        );
+
+        let surname = namePart.pop().toUpperCase();
+
+        let transformedName = namePart.map(
+          (namePart) => namePart[0].toUpperCase() + "."
+        );
+
+        return [surname, ",", ...transformedName].join(" ");
+      }
+
+      function getName() {
+        let completeName = prompt("Insira o seu nome completo:");
+
+        if (completeName) {
+          let transformedName = transforName(completeName);
+
+          alert("Seu nome no crachá é: " + transformedName);
+        } else {
+          alert("Você não inseriu um nome.");
+        }
+      }
+    </script>
+  </body>
+</html>

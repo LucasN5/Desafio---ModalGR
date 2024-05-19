@@ -1,0 +1,58 @@
+<!-- Enunciado do exercício: 
+
+A ModalGR possui um sistema em desenvolvimento e numa parte específica será necessário separar dados 
+numéricos de strings, a partir de uma variável do tipo string contendo diversos valores delimitados por vírgula, 
+como por exemplo: 
+Ana, 89,78, Maria, 45.8, 27, 56, Paula Pereira, 978, A, VIVA, 35, 125, 8999, 
+... 
+
+Visando atender esse quesito, você foi escolhido para nos ajudar nessa solução! 
+Após a separação dos dados exibi-los em tela. 
+
+Observação: O tamanho da string com os dados base é variável, ou seja, não possui um limite fixo.-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Desafio 2 - Separação de dados | ModalGR</title>
+  </head>
+  <body>
+    <h1>Separar dados numéricos e strings</h1>
+    <textarea id="inputData" rows="4" cols="50">
+Ana, 89,78, Maria, 45.8, 27, 56, Paula Pereira, 978, A, VIVA, 35, 125, 8999
+    </textarea>
+    <br />
+    <button onclick="splitData()">Separar Dados</button>
+    <h2>Dados do tipo numéricos:</h2>
+    <div id="numericData"></div>
+    <h2>Dados do tipo não numéricos:</h2>
+    <div id="notNumericData"></div>
+
+    <script>
+      function isNumeric(valor) {
+        return !isNaN(valor) && !isNaN(parseFloat(valor));
+      }
+
+      function splitData() {
+        let data = document.getElementById("inputData").value;
+        let values = data.split(",");
+
+        let number = [];
+        let notNumber = [];
+
+        values.forEach((value) => {
+          value = value.trim();
+          if (isNumeric(value)) {
+            number.push(value);
+          } else {
+            notNumber.push(value);
+          }
+        });
+
+        document.getElementById("numericData").innerText = number.join(", ");
+        document.getElementById("notNumericData").innerText =
+          notNumber.join(", ");
+      }
+    </script>
+  </body>
+</html>
